@@ -2,6 +2,8 @@
 
 FROM python:3.10
 
+CMD mkdir /streamlit_tt
+
 EXPOSE 8501
 
 WORKDIR /streamlit_tt
@@ -16,6 +18,9 @@ RUN git clone https://github.com/rockhard07/mmopltimetable_ids.git .
 
 RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ["streamlit", "run"]
+#ENTRYPOINT ["streamlit", "run"]
 
-CMD ["main.py"]
+#CMD ["main.py"]
+
+CMD streamlit run main.py --server.port $PORT
+#CMD streamlit run main.py
