@@ -158,6 +158,16 @@ class Trips:
         return df_result
 
     def trainInOut(test_df1, ttType, tripType):
+        ## Dataframe for induction and withdrawal ids
+        for i in range(len(test_df1)):
+            if test_df1.loc[i, "dep_time"].startswith("00"):
+                dep = test_df1.loc[i, "dep_time"]
+                # print(df.loc[i, "Departure_Time"], df.loc[i, "Trip_Number"])
+                dep = re.sub('00', '24', dep, 2)
+                # print(f" time is {dep} and loction is {i}")
+                test_df1['dep_time'] = test_df1['dep_time'].replace(test_df1.loc[i, "dep_time"], dep)
+            
+        test_df1 = test_df1.sort_values(by='dep_time', ascending=True)
         trnlst = test_df1['Train'].unique()
         # print(trnlst)
         # print(test_df1.columns)
