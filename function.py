@@ -160,10 +160,10 @@ class Trips:
     def trainInOut(test_df1, ttType, tripType):
         ## Dataframe for induction and withdrawal ids
         for i in range(len(test_df1)):
-            if test_df1.loc[i, "dep_time"].startswith("00"):
+            if test_df1.loc[i, "dep_time"].startswith("1900-01-01 00"):
                 dep = test_df1.loc[i, "dep_time"]
                 # print(df.loc[i, "Departure_Time"], df.loc[i, "Trip_Number"])
-                dep = re.sub('00', '24', dep, 2)
+                dep = re.sub('1900-01-01 00', '24', dep, 2)
                 # print(f" time is {dep} and loction is {i}")
                 test_df1['dep_time'] = test_df1['dep_time'].replace(test_df1.loc[i, "dep_time"], dep)
             
@@ -298,19 +298,22 @@ class Trips:
                 # print(type(1))
                 t = int(dict[train]['trip_no'])
                 # print (t)
-                if t == 1: 
-                    # print(f"This is the firsta trip no for gah {t}")
-                    trip_no = t
-                    trip_no = str(trip_no).zfill(2)
-                    service_id = dict[train]['service_id']
-                    service_id = str(service_id).zfill(2)
-                    dict[train]['trip_no'] = int(trip_no)
-                else:    
+                if t and dict[train]['service_id'] is not None : 
+                    # print(f"This is the else statemeny trip no for gha {t}")
                     trip_no = int(t + 1)
                     trip_no = str(trip_no).zfill(2)
                     service_id = dict[train]['service_id']
                     service_id = str(service_id).zfill(2)
                     dict[train]['trip_no'] = int(trip_no)
+                else:  
+                    # print(f"This is the else statemeny trip no for gha {t}")
+                    trip_no = int(t + 1)
+                    trip_no = str(trip_no).zfill(2)
+                    cut = cut + 1
+                    service_id = cut
+                    service_id = str(service_id).zfill(2)
+                    dict[train]['trip_no'] = int(trip_no)  
+                    dict[train]['service_id'] = cut
                 if ver_pltfrm == 1 :
                     Train_id = f"42{service_id}{trip_no}"
                     # print(Train_id)
