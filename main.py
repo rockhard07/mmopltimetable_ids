@@ -91,6 +91,8 @@ if uploaded_file and option and id_option:
     
     df_induct1 = pd.DataFrame.from_dict(induct_id1)    
     df_withdraw = pd.DataFrame.from_dict(withdraw_id1)
+    df_induct1 = df_induct1.sort_values(by='dep_time', ascending=True)
+    df_withdraw = df_withdraw.sort_values(by='dep_time', ascending=True)
     st.write("All induction trips")
     st.dataframe(df_induct1)
     st.write("All withdrawal trips")
