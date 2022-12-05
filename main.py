@@ -86,8 +86,8 @@ if uploaded_file and option and id_option:
     st.write("All Trips with ID's")
     st.dataframe(allids)
     ## Induction and Withdrawal train and ID's
-    induct_id1 = Trips.trainInOut(allids, option, 'Pull-Out Trip')
-    withdraw_id1 = Trips.trainInOut(allids, option, 'Pull-In Trip')
+    induct_id1, tr1 = Trips.trainInOut(allids, option, 'Pull-Out Trip')
+    withdraw_id1, tr2 = Trips.trainInOut(allids, option, 'Pull-In Trip')
     
     df_induct1 = pd.DataFrame.from_dict(induct_id1)    
     df_withdraw = pd.DataFrame.from_dict(withdraw_id1)
@@ -100,10 +100,10 @@ if uploaded_file and option and id_option:
 
     # -------------------------- Download file section start-------------------
     # list of dataframes 
-    dfs = [orgVechSch, grouped_trips, df, allTrips, allids, df_induct1, df_withdraw]
+    dfs = [orgVechSch, grouped_trips, df, allTrips, allids, df_induct1, df_withdraw, tr1, tr2]
 
     # list of sheet names
-    sheets = ['vehicle_schedule','hourly_trips','cleaned_df','total_trips','id_sheet','induction-ids','withdrwal_ids']  
+    sheets = ['vehicle_schedule','hourly_trips','cleaned_df','total_trips','id_sheet','induction-ids','withdrwal_ids','tr1','tr2']  
 
     buffer = BytesIO()
 
