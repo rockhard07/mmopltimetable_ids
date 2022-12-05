@@ -198,7 +198,7 @@ class Trips:
                             induct_id1.append({'Train' : row['Train'], 'train_id' : strValue, 'dep_time' : row['dep_time'], 'arr_time' : row['arr_time'], 'first_station' : row['first_station'], 'lst_station' : row['lst_station'], 'trip_type' : row['trip_type']})
                         else :
                             continue        
-        return induct_id1            
+        return induct_id1, test_df1            
 
     # def RegTrips(cleaned_df):
     #     df = cleaned_df  
