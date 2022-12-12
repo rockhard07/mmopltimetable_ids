@@ -18,6 +18,8 @@ RUN git clone https://github.com/rockhard07/mmopltimetable_ids.git .
 
 RUN pip3 install -r requirements.txt
 
+RUN pip3 install streamlit --upgrade
+
 #ENTRYPOINT ["streamlit", "run"]
 
 #CMD ["main.py"]
